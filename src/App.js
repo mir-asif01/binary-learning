@@ -16,12 +16,12 @@ function App() {
       path : '/',
       element : <Main></Main>,
       children : [
-        // {
-        //   path : '/',
-        //   element : <Home></Home>
-        // },
         {
           path : '/',
+          element : <Courses></Courses>
+        },
+        {
+          path : '/courses',
           element : <Courses></Courses>
         },
         {
