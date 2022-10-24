@@ -1,5 +1,5 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter , RouterProvider } from 'react-router-dom';
 import Main from '../src/compnents/layout/Main.jsx'
 import Home from '../src/compnents/pages/Home'
 import Courses from './compnents/pages/Courses';
@@ -8,6 +8,7 @@ import Faq from './compnents/pages/Faq';
 import Blog from './compnents/pages/Blog';
 import Profile from './compnents/pages/Profile';
 import Register from './compnents/pages/Register';
+import Error from './compnents/pages/Error';
 
 function App() {
   const routes = createBrowserRouter([
@@ -15,12 +16,12 @@ function App() {
       path : '/',
       element : <Main></Main>,
       children : [
+        // {
+        //   path : '/',
+        //   element : <Home></Home>
+        // },
         {
           path : '/',
-          element : <Home></Home>
-        },
-        {
-          path : '/courses',
           element : <Courses></Courses>
         },
         {
@@ -43,7 +44,11 @@ function App() {
           path : '/register',
           element : <Register></Register>
         }
-      ]
+      ],
+    },
+    {
+      path : '*',
+      element : <Error></Error>
     }
   ])
   return (
