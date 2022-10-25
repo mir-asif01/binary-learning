@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/UserContext';
 import {FaUserCircle} from 'react-icons/fa'
 
 const Header = () => {
 
     const {user,setUser,logOut} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleLogOut=()=>{
         logOut()
         .then(()=>{
             setUser(null)
             alert('log out Successfull')
+            navigate('/')
+            
         })
         .catch(error=>{
             console.log(error)
@@ -34,8 +37,10 @@ const Header = () => {
                                 <li><Link to='profile'>Profile</Link></li>
                             </ul>
                         </div>
-                        <button className="btn btn-ghost normal-case">
-                            <Link to='/'><h1 className='text-3xl text-rose-500'>Binary</h1></Link>
+                        <button className="normal-case">
+                            <Link to='/'>
+                                <img src="https://seeklogo.com/images/1/01-general-lee-logo-0D0EF00BA1-seeklogo.com.png" className='h-14 w-14 rounded-lg' alt="" />
+                            </Link>
                         </button>
                     </div>
                     <div className="navbar-center hidden lg:flex">
@@ -49,7 +54,7 @@ const Header = () => {
                     <div className="navbar-end">
                         <div>
                             {user ? <>
-                                <img src={user?.photoURL} className='h-10 w-10 rounded-full' alt={user?.displayName} title={user?.displayName} />
+                                <img src={user?.photoURL} className='h-10 w-10 rounded-full' alt="" title={user?.displayName} />
                             </> : <>
                                 <FaUserCircle className='h-10 w-10'></FaUserCircle>
                             </>} 
