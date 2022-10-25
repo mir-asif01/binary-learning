@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/UserContext';
 
 const Login = () => {
-    const {setUser,registerWithGoogle,loginWithEmailPassword} = useContext(AuthContext)
+    const {setUser,registerWithGoogle,loginWithEmailPassword,signInWithGithub} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleSignInWithGoogle=()=>{
         registerWithGoogle()
@@ -12,6 +13,20 @@ const Login = () => {
             const user = result.user;
             setUser(user)
             alert('log in successfull')
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    const handleGithubRegister=()=>{
+        signInWithGithub()
+        .then(result=>{
+            const user = result.user;
+            setUser(user);
+            alert('github register successfull')
+            navigate('/')
         })
         .catch((err)=>{
             console.log(err)
@@ -29,6 +44,7 @@ const Login = () => {
             const user= result.user;
             setUser(user)
             alert('login succesfull')
+            navigate('/')
         })
         .catch((err)=>{
             alert(err)
@@ -67,7 +83,7 @@ const Login = () => {
                             <div className='flex justify-evenly items-center'>
                                 <button onClick={handleSignInWithGoogle} className='text-black font-semibold'><FaGoogle className='h-7 w-7'></FaGoogle></button>
                                 <h1>Or</h1>
-                                <button className='text-black font-semibold'><FaGithub className='h-7 w-7'></FaGithub></button>
+                                <button onClickCapture={handleGithubRegister} className='text-black font-semibold'><FaGithub className='h-7 w-7'></FaGithub></button>
                             </div>
                         </div>
                     </div>

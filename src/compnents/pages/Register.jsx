@@ -1,22 +1,35 @@
 import React, { useContext } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa'
 import { AuthContext } from '../Providers/UserContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const { registerWithGoogle, setUser ,registerNewUser , updateUserProfile } = useContext(AuthContext)
-
+    const { registerWithGoogle, setUser ,registerNewUser , updateUserProfile , signInWithGithub} = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleGoogleRegister = () => {
         registerWithGoogle()
             .then(result => {
                 const user = result.user;
                 setUser(user)
                 console.log(user)
-                console.log('login')
+                navigate('/')
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+
+    const handleGithubRegister=()=>{
+        signInWithGithub()
+        .then(result=>{
+            const user = result.user;
+            setUser(user);
+            alert('github register successfull')
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     const handleFormSubmit=(e)=>{
@@ -56,17 +69,17 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Full Name</span>
                                     </label>
-                                    <input type="text" name='fullName' placeholder="email" className="input input-bordered" />
+                                    <input type="text" name='fullName' placeholder="Full Name" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" name='photoURL' placeholder="password" className="input input-bordered" />
+                                    <input type="text" name='photoURL' placeholder="photo URL" className="input input-bordered" />
                                     <label className="label">
                                         <span className="label-text">E-mail</span>
                                     </label>
-                                    <input type="email" name='email' placeholder="password" className="input input-bordered" />
+                                    <input type="email" name='email' placeholder="email" className="input input-bordered" />
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
@@ -82,7 +95,7 @@ const Register = () => {
                             <div className='flex justify-evenly items-center'>
                                 <button onClick={handleGoogleRegister} className='text-black font-semibold'><FaGoogle className='h-7 w-7'></FaGoogle></button>
                                 <h1>Or</h1>
-                                <button className='text-black font-semibold'><FaGithub className='h-7 w-7'></FaGithub></button>
+                                <button onClick={handleGithubRegister} className='text-black font-semibold'><FaGithub className='h-7 w-7'></FaGithub></button>
                             </div>
                         </div>
                     </div>
