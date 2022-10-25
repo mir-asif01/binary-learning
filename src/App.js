@@ -11,6 +11,7 @@ import Register from './compnents/pages/Register';
 import Error from './compnents/pages/Error';
 import CourseContent from './compnents/shared/CourseContent';
 import Checkout from './compnents/shared/Checkout';
+import PrivateRoute from './compnents/Providers/PrivateRoute';
 
 function App() {
   const routes = createBrowserRouter([
@@ -43,7 +44,7 @@ function App() {
         },
         {
           path : '/profile',
-          element : <Profile></Profile>
+          element : <PrivateRoute><Profile></Profile></PrivateRoute>
         },
         {
           path : '/register',
@@ -60,7 +61,7 @@ function App() {
         {
           path : 'topics/:id/checkout/:id',
           loader : ({params})=> fetch(`https://binary-learning-server.vercel.app/checkout/${params.id}`),
-          element : <Checkout></Checkout>
+          element : <PrivateRoute><Checkout></Checkout></PrivateRoute>
         },{
           path : '*',
           element : <Error></Error>
