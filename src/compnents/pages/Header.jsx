@@ -49,7 +49,7 @@ const Header = () => {
                     <div className="navbar-end">
                         <div>
                             {user ? <>
-                                <img src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
+                                <img src={user?.photoURL} className='h-10 w-10 rounded-full' alt={user?.displayName} title={user?.displayName} />
                             </> : <>
                                 <FaUserCircle className='h-10 w-10'></FaUserCircle>
                             </>} 
