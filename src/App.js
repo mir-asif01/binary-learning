@@ -9,11 +9,14 @@ import Blog from './compnents/pages/Blog';
 import Profile from './compnents/pages/Profile';
 import Register from './compnents/pages/Register';
 import Error from './compnents/pages/Error';
+import CourseContent from './compnents/shared/CourseContent';
+import Checkout from './compnents/shared/Checkout';
 
 function App() {
   const routes = createBrowserRouter([
     {
       path : '/',
+      loader : ()=> fetch('https://binary-learning-server.vercel.app/topics'),
       element : <Main></Main>,
       children : [
         {
@@ -23,7 +26,8 @@ function App() {
         },
         {
           path : '/courses',
-          element : <Courses></Courses>
+          loader : ()=> fetch('https://binary-learning-server.vercel.app/topics'),
+          element : <Courses></Courses>,
         },
         {
           path : '/login',
@@ -44,6 +48,22 @@ function App() {
         {
           path : '/register',
           element : <Register></Register>
+        },
+        {
+          path : 'topics/:id',
+          loader : ({params})=>{
+            // const id = params.id;
+            return fetch(`https://binary-learning-server.vercel.app/topics/${params.id}`)
+          },
+          element : <CourseContent></CourseContent>
+        },
+        {
+          path : 'topics/:id/checkout/:id',
+          loader : ({params})=> fetch(`https://binary-learning-server.vercel.app/checkout/${params.id}`),
+          element : <Checkout></Checkout>
+        },{
+          path : '*',
+          element : <Error></Error>
         }
       ],
     },
