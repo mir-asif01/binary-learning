@@ -1,11 +1,44 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+//  swiper
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const Home = () => {
     const topics = useLoaderData()
     return (
         <div>
-            <h1 className='text-2xl'>Welcome to our free learning platform "Binary"</h1>
+            <h1 className='text-2xl my-5'>Welcome to our free learning platform "Binary"</h1>
+            <div>
+                <Swiper
+                    // install Swiper modules
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    navigation = {{auto : true}}
+                    pagination={{ clickable: true }}
+                    scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => {}}
+                    // onSlideChange={() => console.log('slide change')}
+                >
+                    {
+                        topics.map(tp=><SwiperSlide className='flex justify-center items-center'>
+                            <img src={tp.img} className='w-1/4 mx-2' alt="" />
+                            <div>
+                            {
+                                tp.features.map(ft=><>
+                                <p>✔{ft}</p>
+                                </>)
+                            }
+                            </div>
+                        </SwiperSlide>)
+                    }
+                </Swiper>
+            </div>
             <div className='p-3 w-full md:w-3/4 my-4 mx-auto'>
                 {
                     topics.map(topic => <>
