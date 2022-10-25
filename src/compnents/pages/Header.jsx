@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Providers/UserContext';
+import {FaUserCircle} from 'react-icons/fa'
 
 const Header = () => {
+
+    const {user} = useContext(AuthContext)
+
     return (
         <div>
             <nav className='shadow-sm'>
@@ -13,28 +18,39 @@ const Header = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 texl-2xl">
                                 <li><Link to='courses'>Courses</Link></li>
-                                <li><Link to='login'>Login</Link></li>
                                 <li><Link to='faq'>FAQ</Link></li>
                                 <li><Link to='blog'>Blog</Link></li>
                                 <li><Link to='profile'>Profile</Link></li>
                             </ul>
                         </div>
-                        <a className="btn btn-ghost normal-case">
+                        <button className="btn btn-ghost normal-case">
                             <Link to='/'><h1 className='text-3xl text-rose-500'>Binary</h1></Link>
-                        </a>
+                        </button>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal p-0 text-xl">
                             <li><Link to='courses'>Courses</Link></li>
-                            <li><Link to='login'>Login</Link></li>
                             <li><Link to='faq'>FAQ</Link></li>
                             <li><Link to='blog'>Blog</Link></li>
                             <li><Link to='profile'>Profile</Link></li>
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link to='/login' className='mx-2 py-2 px-4 bg-rose-600 rounded-sm text-white font-semibold'><button>Login</button></Link>
-                        <Link to='/register' className='mx-2 py-2 px-4 bg-rose-600 rounded-sm text-white font-semibold'><button>Register</button></Link>
+                        <div>
+                            {user ? <>
+                                <img src={user?.photoURL} alt={user?.displayName} title={user?.displayName} />
+                            </> : <>
+                                <FaUserCircle className='h-10 w-10'></FaUserCircle>
+                            </>} 
+                        </div>
+                        {
+                            user?.uid ? <>
+                            <Link to='/login' className='mx-2 py-2 px-4 bg-rose-600 rounded-sm text-white font-semibold'><button>Logout</button></Link>
+                            </> : <>
+                            <Link to='/login' className='mx-2 py-2 px-4 bg-rose-600 rounded-sm text-white font-semibold'><button>Login</button></Link>
+                            </>
+                        }
+                        
                     </div>
                 </div>
             </nav>
