@@ -18,6 +18,7 @@ function App() {
       children : [
         {
           path : '/',
+          loader : ()=> fetch('https://binary-learning-server.vercel.app/topics'),
           element : <Home></Home>
         },
         {
