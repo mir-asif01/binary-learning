@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/UserContext';
 
 const Login = () => {
     const {setUser,registerWithGoogle,loginWithEmailPassword,signInWithGithub} = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const handleSignInWithGoogle=()=>{
         registerWithGoogle()
@@ -13,7 +15,7 @@ const Login = () => {
             const user = result.user;
             setUser(user)
             alert('log in successfull')
-            navigate('/')
+            navigate(from,{replace:true})
         })
         .catch((err)=>{
             console.log(err)
@@ -26,7 +28,7 @@ const Login = () => {
             const user = result.user;
             setUser(user);
             alert('github register successfull')
-            navigate('/')
+            navigate(from,{replace:true})
         })
         .catch((err)=>{
             console.log(err)
@@ -44,7 +46,7 @@ const Login = () => {
             const user= result.user;
             setUser(user)
             alert('login succesfull')
-            navigate('/')
+            navigate(from,{replace:true})
         })
         .catch((err)=>{
             alert(err)
