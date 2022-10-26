@@ -12,7 +12,6 @@ const CourseContent = () => {
     const topic = useLoaderData();
     const { name, id, img, details, desc } = topic;
     const { loops, oop, conditions, data_types, variables } = details
-    console.log(topic)
 
     // onClick={downloadHandler}
 
@@ -21,7 +20,7 @@ const CourseContent = () => {
             <div className='flex justify-between px-6 items-center'>
                 <h1 className='text-2xl'>Course Details</h1>
                 
-                <Pdf targetRef={ref} filename="code-example.pdf">
+                <Pdf targetRef={ref} filename={`${name}_intro`}>
                     {({ toPdf }) => <button onClick={toPdf} title='download this page info'><FaFileDownload className='h-7 w-7' /></button>}
                 </Pdf>
             </div>

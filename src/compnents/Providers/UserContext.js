@@ -8,7 +8,7 @@ const provider = new GoogleAuthProvider();
 const githhubProvider = new GithubAuthProvider();
 const UserContext = ({children}) => {
     const [user,setUser] = useState(null)
-
+    const [toggle,setToogle] = useState(false)
     const registerWithGoogle=()=>{
         return signInWithPopup(auth,provider);
     }
@@ -44,7 +44,7 @@ const UserContext = ({children}) => {
 
     },[])
 
-    const contextInfo = {registerWithGoogle,setUser,user,logOut,registerNewUser,updateUserProfile,loginWithEmailPassword,signInWithGithub}
+    const contextInfo = {registerWithGoogle,setUser,user,logOut,registerNewUser,updateUserProfile,loginWithEmailPassword,signInWithGithub , toggle ,setToogle }
     return (
         <AuthContext.Provider value={contextInfo}>
             {children}

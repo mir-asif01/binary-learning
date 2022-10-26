@@ -19,16 +19,16 @@ const Footer = () => {
                 </div>
                 <div className='text-center my-3'>
                     <h1 className='text-xl'>Social Networks</h1>
-                    <div className='text-gray-400 flex md:flex-col'>
-                        <p className='flex items-center cursor-pointer'><FaFacebook className='mx-1 text-blue-500'></FaFacebook>Facebook</p>
-                        <p className='flex items-center cursor-pointer'><FaInstagram className='mx-1 text-blue-500'></FaInstagram>Instagram</p>
-                        <p className='flex items-center cursor-pointer'><FaTwitter className='mx-1 text-blue-500'></FaTwitter>Twitter</p>
-                        <p className='flex items-center cursor-pointer'><FaLinkedin className='mx-1 text-blue-500'></FaLinkedin>Linkedin</p>
+                    <div className='text-gray-400 flex md:flex-col items-center justify-center flex-wrap'>
+                        <p className='flex items-center cursor-pointer mx-3 my-2 md:my-0'><FaFacebook className='mx-1 text-blue-500'></FaFacebook>Facebook</p>
+                        <p className='flex items-center cursor-pointer mx-3 my-2 md:my-0'><FaInstagram className='mx-1 text-blue-500'></FaInstagram>Instagram</p>
+                        <p className='flex items-center cursor-pointer mx-3 my-2 md:my-0'><FaTwitter className='mx-1 text-blue-500'></FaTwitter>Twitter</p>
+                        <p className='flex items-center cursor-pointer mx-3 my-2 md:my-0'><FaLinkedin className='mx-1 text-blue-500'></FaLinkedin>Linkedin</p>
 
                     </div>
                 </div>
             </div>
-            <h1 className='text-sm text-center'>Developed By Asif</h1>
+            <h1 className='text-sm text-center italic'>Developed By Asif</h1>
         </div>
     );
 };

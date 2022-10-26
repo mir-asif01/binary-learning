@@ -11,11 +11,11 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user)
-                console.log(user)
+                alert('Registration Successfull')
                 navigate('/')
             })
             .catch(error => {
-                console.log(error)
+                alert(error)
             })
     }
 
@@ -24,11 +24,11 @@ const Register = () => {
         .then(result=>{
             const user = result.user;
             setUser(user);
-            alert('github register successfull')
+            alert('Registration Successfull')
             navigate('/')
         })
         .catch((err)=>{
-            console.log(err)
+            alert(err)
         })
     }
 
@@ -39,19 +39,19 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value
         const password = form.password.value
-        console.log(fullName,photoURL,email,password)
 
         registerNewUser(email,password)
         .then(result=>{
             const user = result.user;
             updateUserProfile(fullName,photoURL)
             .then(()=>{
-                alert('profile updated')
+                alert('Registration Successfull')
+                navigate('/')
             })
             setUser(user)
         })
         .catch((err)=>{
-            console.log(err)
+            alert(err)
         })
 
         form.reset();
@@ -69,21 +69,21 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Full Name</span>
                                     </label>
-                                    <input type="text" name='fullName' placeholder="Full Name" className="input input-bordered" />
+                                    <input type="text" name='fullName' placeholder="Full Name" className="input input-bordered" required/>
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" name='photoURL' placeholder="photo URL" className="input input-bordered" />
+                                    <input type="text" name='photoURL' placeholder="photo URL" className="input input-bordered" required/>
                                     <label className="label">
                                         <span className="label-text">E-mail</span>
                                     </label>
-                                    <input type="email" name='email' placeholder="email" className="input input-bordered" />
+                                    <input type="email" name='email' placeholder="email" className="input input-bordered" required/>
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name='password' placeholder="password" className="input input-bordered" />
+                                    <input type="password" name='password' placeholder="password" className="input input-bordered" required/>
                                 </div>
                                 <p>Already have an account ?? <Link to='/login' className='text-blue-500 underline text-xs'>Login</Link></p>
                                 <div className="form-control mt-6">
