@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/UserContext';
@@ -8,16 +8,19 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
+    const [error,setError] = useState("");
+    const [success,setSuccess] = useState("")
 
     const handleSignInWithGoogle=()=>{
         registerWithGoogle()
         .then((result)=>{
             const user = result.user;
             setUser(user)
-            alert('log in successfull')
+            setSuccess('log in successfull')
             navigate(from,{replace:true})
         })
         .catch((err)=>{
+            setError(err.message)
             console.log(err)
         })
     }
@@ -27,10 +30,11 @@ const Login = () => {
         .then(result=>{
             const user = result.user;
             setUser(user);
-            alert('github register successfull')
+            setSuccess('github register successfull')
             navigate(from,{replace:true})
         })
         .catch((err)=>{
+            setError(err.message)
             console.log(err)
         })
     }
@@ -45,11 +49,12 @@ const Login = () => {
         .then((result)=>{
             const user= result.user;
             setUser(user)
-            alert('login succesfull')
+            setSuccess('login succesfull')
             navigate(from,{replace:true})
         })
         .catch((err)=>{
-            alert(err)
+            setError(err.message)
+            setError(err.message)
         })
 
         form.reset();
@@ -78,6 +83,8 @@ const Login = () => {
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Login</button>
                                 </div>
+                                <p className='my-2 text-red-500'>{error}</p>
+                                <p className='my-2 text-green-600'>{success}</p>
                                 <p>Don't have an account ?? <Link to='/register' className='text-blue-500 underline text-xs'>Register</Link></p>
                             </form>
                             <hr />
