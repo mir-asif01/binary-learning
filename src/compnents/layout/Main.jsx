@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
+import Footer from '../pages/Footer';
 import Header from '../pages/Header';
-import LeftSideNav from '../shared/LeftSideNav';
-import Home from '../pages/Home';
+
 
 const Main = () => {
     const topics = useLoaderData()
@@ -19,7 +19,7 @@ const Main = () => {
                     </Outlet>
                 </div>
             </div>
-
+           <Footer></Footer>
         </div>
     );
 };
