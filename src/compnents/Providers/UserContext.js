@@ -9,6 +9,8 @@ const githhubProvider = new GithubAuthProvider();
 const UserContext = ({children}) => {
     const [user,setUser] = useState(null)
     const [toggle,setToogle] = useState(false)
+    const [loading,setLoading] = useState(true)
+
     const registerWithGoogle=()=>{
         return signInWithPopup(auth,provider);
     }
@@ -38,6 +40,7 @@ const UserContext = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
             setUser(currentUser)
+            setLoading(false)
         })
 
         return unsubscribe();
