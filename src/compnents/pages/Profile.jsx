@@ -1,9 +1,23 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/UserContext';
-
+import { Link, useNavigate } from 'react-router-dom';
 const Profile = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user,setUser, logOut} = useContext(AuthContext);
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                setUser(null)
+                alert('log out Successfull')
+                navigate('/')
+
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
 
 
     return (
@@ -16,6 +30,7 @@ const Profile = () => {
                     <button className='bg-slate-700 py-2 px-4 text-white mt-5 rounded-tl-md rounded-br-md'>Update Profile</button>
                 </div>
             </div>
+            <Link to='/login' className='mx-2 py-2 px-4 bg-rose-600 rounded-sm text-white font-semibold'><button onClick={handleLogOut}>Log Out</button></Link>
         </div>
     );
 };
