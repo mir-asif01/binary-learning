@@ -65,7 +65,7 @@ const Login = () => {
             <h1 className='text-4xl font-semibold text-rose-500'>Please Login</h1>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 text-black">
                         <div className="card-body">
                             <form onSubmit={handleLoginWithEmailPass}>
                                 <div className="form-control">

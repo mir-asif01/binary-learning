@@ -62,7 +62,7 @@ const Register = () => {
             <h1 className='text-4xl text-rose-500'>Please Register</h1>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 text-black">
                         <div className="card-body w-80">
                             <form onSubmit={handleFormSubmit}>
                                 <div className="form-control">

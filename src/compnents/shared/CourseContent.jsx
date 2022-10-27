@@ -19,7 +19,7 @@ const CourseContent = () => {
         <div className='w-full p-7 md:w-3/4 mx-auto shadow-md'>
             <div className='flex justify-between px-6 items-center'>
                 <h1 className='text-2xl'>Course Details</h1>
-                
+
                 <Pdf targetRef={ref} filename={`${name}_intro`}>
                     {({ toPdf }) => <button onClick={toPdf} title='download this page info'><FaFileDownload className='h-7 w-7' /></button>}
                 </Pdf>
@@ -37,8 +37,10 @@ const CourseContent = () => {
                 </div>
             </div>
 
-            <Link to='/courses' className='mt-5 bg-rose-500 py-2 px-4 text-white font-semibold'>Go To Courses Page</Link>
-            <Link to={`/topics/${id}/checkout/${id}`} className='bg-blue-700 py-2 px-4 text-white font-semibold mx-2'>Get Premium Access</Link>
+            <div className='flex flex-col-reverse md:flex row justify-center items-center'>
+                <Link to='/courses' className='bg-rose-500 py-2 px-4 text-white font-semibold mx-2 my-1'>Go To Courses Page</Link>
+                <Link to={`/topics/${id}/checkout/${id}`} className='bg-blue-700 py-2 px-4 text-white font-semibold mx-2 my-1'>Get Premium Access</Link>
+            </div>
         </div>
     );
 };
